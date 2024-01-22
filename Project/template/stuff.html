@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+       
+  
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+  }
+  
+  h2 {
+      color: #333;
+  }
+  
+  .container {
+      margin-top: 20px;
+  }
+  
+  table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+  }
+  
+  th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+  }
+  
+  th {
+      background-color: #f2f2f2;
+  }
+  
+  form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+  }
+  
+  label {
+      margin-top: 10px;
+      display: block;
+      font-weight: bold;
+  }
+  
+  input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-top: 5px;
+  }
+  
+  input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+      background-color: #45a049;
+  }
+  
+  a {
+      text-decoration: none;
+      padding: 5px 10px;
+      margin-right: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      color: #333;
+  }
+  
+  a:hover {
+      background-color: #632929;
+  }
+      .success {
+        background-color: #a9f8ad;
+        font-size: large;
+        font-style: italic;
+        color: #075c0c;
+        width: 100%;
+        height: 30px;
+  
+    }
+    .error{
+      background-color: #f18582;
+      font-size: large;
+      font-style: italic;
+      color: #b11c16;
+      width: 100%;
+      height: 30px;
+  }
+      header {
+          background-color: #ECE3CE;
+          color: #1a1616;
+          padding: 15px;
+          text-align: center;
+          text-shadow: #253b26;
+          font-style: italic;
+          
+          
+      }
+
+      nav {
+          background-color: #dae2e9;
+          overflow: hidden;
+      }
+
+      nav a {
+          float: left;
+          display: block;
+          color: rgb(0, 0, 0);
+          text-align: center;
+          padding: 14px 16px;
+          text-shadow: #253b26;
+          font-size: larger;
+          text-decoration: none;
+          transition: background-color 0.3s;
+      }
+
+      nav a:hover {
+          background-color: rgb(117, 9, 9)32, 12;
+          color: rgb(104, 102, 102);
+          
+      }
+
+  </style>
+</head>
+
+<body>
+
+<h2>Stuff Information</h2>
+  
+{% include "nevber.html"%}   
+
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Mobile Number</th>
+    <th>Email</th>
+    <th>Age</th>
+    <th>Image</th>
+    <th>Actions</th>
+  </tr>
+  {% for i in emp %}
+  <tr>
+    <td>{{i.First_Name}}</td>
+    <td>{{i.Last_Name}}</td>
+    <td>{{i.Mobile}}</td>
+    <td>{{i.Email}}</td>
+    <td>{{i.Age}}</td>
+    <td>
+      <img src="{{i.myImage.url}}" width="50" height="35" alt="">
+      
+    </td>
+      <td>
+        <a href="{% url 'editStuff' i.id %} ">Edit</a>
+        <a href="{% url 'deleteStuff' i.id %}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% include "message.html" %}
+
+  <div class="container">
+    <form action="{%url 'stuffAdd'%}" method='post'enctype="multipart/form-data">
+
+
+        {% csrf_token %}
+    
+    <form>
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+      <label for="lastname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+      <label for="Mobile">Mobile Number</label>
+      <input type="text" id="mobile_num" name="mobile" placeholder="Your mobile number..">
+
+      <label for="email">Email</label>
+      <input type="text" id="s_email" name="email" placeholder="Your email..">
+
+      <label for="age">Age</label>
+      <input type="text" id="s_age" name="age" placeholder="Your age..">
+
+      <label for="">Profile Picture</label>
+      <input type="file" id="Profile_pic" name="Profile_pic" placeholder="Your pic..">
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+</body>
+</html>

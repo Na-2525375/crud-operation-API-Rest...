@@ -1,0 +1,291 @@
+
+<style>
+  .card {
+          
+    border-radius: 6px;
+    max-width: 380px;
+    text-align: center;
+    margin-top: 60px;
+    background-color: rgb(22, 92, 22);
+    position: relative;
+    margin: auto;
+    border-radius: 20px;
+    
+}
+.success {
+  background-color: #a9f8ad;
+  font-size: large;
+  font-style: italic;
+  color: #075c0c;
+  width: 100%;
+  height: 30px;
+
+
+}
+.error{
+background-color: #f18582;
+font-size: large;
+font-style: italic;
+color: #b11c16;
+width: 100%;
+height: 30px;
+}
+.card_cover img {
+  width: 100%;
+  height: 300px; 
+  object-fit: cover;
+  border-radius: 20px;
+}
+.card_img {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: -60px auto 0;
+}
+
+.card_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card_info {
+    padding-bottom: 20px;
+}
+h5.phone{
+  margin-bottom: -15px;
+  margin-left: -200px;
+}
+h5.Age{
+  margin-top: -17px;
+  margin-left: -280px;
+
+}
+
+h5.email{
+  margin-left: -110px;
+}
+
+.p_e_box{
+padding-bottom: 10px;
+}
+a {
+  text-decoration: none;
+  color: rgb(183, 0, 255);
+}
+a:hover{
+  color: black;
+}
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: rgb(45, 153, 99);
+  background-color: #630909;
+  text-align: center;
+  cursor: pointer;
+  width:380px;
+  font-size: 18px;
+  border-radius: 20px;
+}
+ a {
+text-decoration: none;
+font-size: 22px;
+color: rgb(63, 1, 1);
+}
+
+button:hover, a:hover {
+opacity: 0.7;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+label {
+  margin-top: 10px;
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"], input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+a {
+  text-decoration: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+}
+
+a:hover {
+  background-color: #632929;
+}
+  .success {
+    background-color: #a9f8ad;
+    font-size: large;
+    font-style: italic;
+    color: #075c0c;
+    width: 100%;
+    height: 30px;
+
+}
+.error{
+  background-color: #f18582;
+  font-size: large;
+  font-style: italic;
+  color: #b11c16;
+  width: 100%;
+  height: 30px;
+}
+  header {
+      background-color: #ECE3CE;
+      color: #1a1616;
+      padding: 15px;
+      text-align: center;
+      text-shadow: #253b26;
+      font-style: italic;
+      
+      
+  }
+
+  nav {
+      background-color: #dae2e9;
+      overflow: hidden;
+  }
+
+  nav a {
+      float: left;
+      display: block;
+      color: rgb(0, 0, 0);
+      text-align: center;
+      padding: 14px 16px;
+      text-shadow: #253b26;
+      font-size: larger;
+      text-decoration: none;
+      transition: background-color 0.3s;
+  }
+
+  nav a:hover {
+      background-color: rgb(117, 9, 9)32, 12;
+      color: rgb(104, 102, 102);
+      
+  }
+
+
+  </style>
+  </head>
+  {%load static %}
+  <body>
+  
+  <h2 style="text-align:center"> Profile </h2>
+
+  {% for i in library %}
+  <div>
+  <div class="card">
+    <div class="card_cover">
+      <img src="{{i.myImage.url}}" alt="myprofile">
+    </div>
+    <div class="card_img"> 
+        <img src="{{i.myImage.url}}" alt="user-image">
+    </div>
+    <div class="card_info"> 
+          <h2>{{i.Book_Name}} {{i.Writer_Name}} </h2>
+         <div class="p_e_box">
+          <h5 class="phone">Serial_No:{{i.Serial_No}}</h5>
+          <h5 class="email"></h5>Acquisition_Date:{{i.Acquisition_Date}}</h5>
+          <h5 class="Age">Return_Date:{{i.Return_Date}}</h5>
+        </div>
+      </div>
+    </div>
+</div>
+    <p><button>Contact</button></p>
+  </div>
+  {% include "message.html" %}
+<div class="container">
+    <form action=" {% url 'updatelibrary' %} " method='post'enctype="multipart/form-data">
+
+        {% csrf_token %}
+   
+    <form>
+      <label for="fname">Library ID</label>
+      <input type="text" id="fname" value="{{i.id}}" name="libraryid" placeholder="Your Id..">
+
+      <label for="bname">Book Name</label>
+      <input type="text" id="b_name"value="{{i.Book_Name}}"  name="Book_Name" placeholder="Book name..">
+
+      <label for="wname">Writer Name</label>
+      <input type="text" id="w_name"value="{{i.Writer_Name}}"  name="Writer_Name" placeholder="Writer name..">
+
+      <label for="Mobile">Serial Number</label>
+      <input type="text" id="s_num"value="{{i.Serial_No}}" name="Serial_No" placeholder="Serial number..">
+
+      <label for="email">Acquisition Date</label>
+      <input type="text" id="a_date"value="{{i.Acquisition_Date}}"  name="Acquisition_Date" placeholder="Acquisition Date..">
+
+      <label for="age">Return Date</label>
+      <input type="text" id="r_date"value="{{i.Return_Date}}"  name="Return_Date" placeholder="Return Date..">
+
+      <label for="">Profile Picture</label>
+      <input type="file" id="Profile_pic" name="Profile_pic" placeholder="Your pic..">
+
+      
+
+      <input type="submit" value="Update">
+      
+    </form>
+    
+  </div>
+
+</div>
+{%endfor%}

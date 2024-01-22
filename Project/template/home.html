@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+
+  </head>
+  <body>
+  
+     
+      {% include "nevber.html" %}
+     <h1> Hello Nahar Khan {{user.username}}</h1>
+     <style>
+     body {
+      font-family: Arial, sans-serif;
+      
+      background-size: cover;
+      height: 100%;
+    }
+    
+    h1 {
+      text-align: center;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #06D85F;
+      margin: 80px 0;
+    }
+    
+   
+    
+
+        nav {
+            background-color: #dae2e9;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 14px 16px;
+            text-shadow: #253b26;
+            font-size: larger;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgb(117, 9, 9)32, 12;
+            color: rgb(104, 102, 102);
+            
+        }
+      </style>
+      
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+      
+        h1 {
+          text-align: center;
+          color: gray;
+        }
+      
+        .card {
+          width: 300px;
+          margin: 20px;
+          padding: 15px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          background-color: #fff;
+          text-align: center;
+          display: inline-block;
+        }
+      
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 5px;
+        }
+      
+        h1 {
+          font-size: 1.5em;
+          margin: 10px 0;
+          font-style: italic;
+          color: #253b26;
+        }
+      
+        p {
+          margin: 5px 0;
+        }
+      
+        button {
+          background-color: #07446d;
+          color: #fff;
+          padding: 8px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+          margin-top: 10px;
+          width: 100%;
+          
+        }
+      
+        button a {
+          text-decoration: none;
+          color: inherit;
+         
+        }
+      
+        button:hover {
+          background-color: #2980b9;
+        }
+      
+        /* Add additional styles for specific categories or icons if needed */
+        
+      </style>
+         
+        
+          
+        <h1 style="text-align: center; color: gray;">  Student Informations</h1>
+        {%for i in student %}
+        <div class="card">
+          <img src="{{i.myImage.url}}" alt="" style="width:100%; height: 300px;">
+          <h1>{{i.First_Name}} {{i.Last_Name}}</h1>
+          <p class="title">{{i.Mobile}}</p>
+          <p>DIPT</p>
+          
+          <p ><button><a href="{% url 'editStudent' i.id %}" style="color: white;">Update</a></button></p>
+          <p><button><a href="{% url 'deleteStudent' i.id %}"  style="color: white;">Delete</a></button></p>
+         
+        </div>
+    
+        {% endfor %}
+        <h1 style="text-align: center; color: gray;">  Teacher Informations</h1>
+    
+        {%for i in teacher %}
+        <div class="card">
+          <img src="{{i.myImage.url}}" alt="" style="width:100%">
+          <h1>{{i.First_Name}} {{i.Last_Name}}</h1>
+          <p class="title">{{i.Mobile}}</p>
+          <p>DIPT</p>
+          
+          <p><button><a href="{% url 'editTeacher' i.id %}" style="color: white;">Update</a></button></p>
+          <p><button><a href="{% url 'deleteTeacher' i.id %}"  style="color: white;">Delete</a></button></p>
+        
+        </div>
+        {% endfor %}
+        <h1 style="text-align: center; color: gray;">  Stuff Informations</h1>
+        {% for i in stuff %}
+        <div class="card">
+          <img src="{{i.myImage.url}}" alt="" style="width:100%">
+          <h1>{{i.First_Name}} {{i.Last_Name}}</h1>
+          <p class="title">{{i.Mobile}}</p>
+          <p>DIPT</p>
+          <div style="margin: 24px 0;">
+            <a href="#"><i class="fa fa-dribbble"></i></a> 
+            <a href="#"><i class="fa fa-twitter"></i></a>  
+            <a href="#"><i class="fa fa-linkedin"></i></a>  
+            <a href="#"><i class="fa fa-facebook"></i></a> 
+          </div>
+          <p><button><a href="{% url 'editStuff' i.id %}" style="color: white;">Update</a></button></p>
+          <p><button><a href="{% url 'deleteStuff' i.id %}"  style="color: white;">Delete</a></button></p>
+         
+        </div>
+        {% endfor %}
+
+        <h1 style="text-align: center; color: gray;">  Management Informations</h1>
+        {% for i in management %}
+        <div class="card">
+          <img src="{{i.myImage.url}}" alt="" style="width:100%">
+          <h1>{{i.First_Name}} {{i.Last_Name}}</h1>
+          <p class="title">{{i.Mobile}}</p>
+          <p>DIPT</p>
+          <div style="margin: 24px 0;">
+            <a href="#"><i class="fa fa-dribbble"></i></a> 
+            <a href="#"><i class="fa fa-twitter"></i></a>  
+            <a href="#"><i class="fa fa-linkedin"></i></a>  
+            <a href="#"><i class="fa fa-facebook"></i></a> 
+          </div>
+          <p><button><a href="{% url 'editmanagement' i.id %}" style="color: white;">Update</a></button></p>
+          <p><button><a href="{% url 'deletemanagement' i.id %}"  style="color: white;">Delete</a></button></p>
+         
+        </div>
+        {% endfor %}
+
+        <h1 style="text-align: center; color: gray;"> Library Informations</h1>
+        {% for i in library %}
+        <div class="card">
+          <img src="{{i.myImage.url}}" alt="" style="width:100%">
+          <h1>{{i.Book_Name}} {{i.Writer_Name}}</h1>
+          <p class="title">{{i.Serial_No}}</p>
+          <p>DIPT</p>
+          <div style="margin: 24px 0;">
+            <a href="#"><i class="fa fa-dribbble"></i></a> 
+            <a href="#"><i class="fa fa-twitter"></i></a>  
+            <a href="#"><i class="fa fa-linkedin"></i></a>  
+            <a href="#"><i class="fa fa-facebook"></i></a> 
+          </div>
+          <p><button><a href="{% url 'editlibrary' i.id %}" style="color: white;">Update</a></button></p>
+          <p><button><a href="{% url 'deletelibrary' i.id %}"  style="color: white;">Delete</a></button></p>
+         
+        </div>
+        {% endfor %}
+</body>
+
+</html>
